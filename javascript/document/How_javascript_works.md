@@ -41,6 +41,9 @@ printSquare(5);
 
 ![](https://user-images.githubusercontent.com/44806627/76292965-8bc8f780-62f3-11ea-9876-b5c97180b5ad.png)
 
+콜 스택의 각 단계를 스택 프레임(Stack Frame) 이라고 한다.
+
+예외가 발생했을 때 콘솔 로그 상에서 나타나는 스택 트레이스(Stack Trace)가 오류가 발생하기까지의 스택 트레이스들로 구성된다. 
 
 ### Task Queue (Event Queue) 
 

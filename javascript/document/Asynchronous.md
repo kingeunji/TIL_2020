@@ -140,7 +140,86 @@ getData().then(function(data) {
 
 ![promises](https://user-images.githubusercontent.com/44806627/76385430-f38b4b00-63a4-11ea-8664-717d094a43a4.png)
 
+#### then() Method 
+then 메소드는 promise 객체를 리턴하고, 두 개의 콜백 함수를 인수로 받는다.  
+사용 형태는 다음과 같다.
+```
+promise.then(successCallback, failureCallback)
 
+promise.then(function (value) {
+  //성공했을 때 실행
+}, function (reason) {
+  //실패했을 때 실행
+});
+```
+
+#### Promise Chaining
+then() 메소드 호출 후 프로미스 객체를 반환할 수 있어 여러 개의 프로미스를 연결해서 사용할 수 있다. 
+
+#### Promise의 문제점 
+- 프로미스를 사용한 예외 처리시 `try/catch` 대신에 `catch()` 메소드를 사용하여 예외 처리를 해야한다.   
+동기 코드와 비동기 코드가 섞여 있을 때 예외 처리가 누락된다.  
+
+
+### 5. async await
+
+Promise 의 불편한 점을 해결하기 위해 ES7 부터 `async/await` 키워드가 추가되었다.  
+이 키워드를 사용하면 비동기 코드를 마치 동기 코드처럼 보이게 작성할 수 있다. 
+
+#### async await 기본 문법 
+```
+async function 함수명() {
+  await 비동기_처리_메서드_명();
+}
+```
+여기서 주의할 점은 비동기 메소드가 프로미스 객체를 반환해야 await가 의도한 대로 동작한다. 
+
+```
+// Promise로 작성한 코드 
+function fetchAuthorName(postId) {
+    return fetch('/posts/${postId}')
+        .then(response => response.json())
+        .then(post => post.userId)
+        .then(userId => {
+            return fetch('/users/${userId}')
+                    .then(response => response.json())
+                    .then(user => user.name); 
+        });
+}
+
+// async await 키워드를 사용한 코드
+async function asyncFetchAuthorName(postId) {
+    const postResponse = await fetch('/posts/${postId}');
+    const post = await postResponse.json();
+    const userId = post.userId;
+    const userResponse = await fetch('users/${userId}');
+    const user = await userResponse.json();
+    return user.name;
+}
+
+fetchAuthorName(1).then(name => console.log("name : ", name));
+```
+
+두 코드의 다른 점은 function 앞에 `async`라는 예약어를 붙이고, Promise 객체를 리턴하는 비동기 처리를 하는 함수 앞에 `await`를 붙인다. 
+
+#### async & await 예외 처리 
+동기/비동기 구분없이 `try/catch`로 일관되게 예외 처리를 할 수 있는 부분도 큰 이점이다. 
+```
+async function asyncFetchAuthorName(postId) {
+    const postResponse = await fetch('/posts/${postId}');
+    const post = await postResponse.json();
+    const userId = post.userId;
+    try {
+        const userResponse = await fetch('users/${userId}');
+        const user = await userResponse.json();
+        return user.name;
+    } catch(err) {
+        console.log('Faile to fetch User : ', err);
+        return "Unknown";
+    }
+}
+
+```
 
 
 
