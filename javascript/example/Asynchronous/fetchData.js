@@ -24,3 +24,4 @@ async function fetchAuthorNameWithAsync(postId) {
 }
 
 fetchAuthorNameWithAsync(1).then(name => console.log("name:", name));
+
