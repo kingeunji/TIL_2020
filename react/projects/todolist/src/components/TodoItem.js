@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 import { MdDone, MdDelete } from 'react-icons/md'
 
 const Remove = styled.div `
