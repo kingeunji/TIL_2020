@@ -77,7 +77,7 @@ function App() {
       );
     }
 
-    const count = useMemo(ㅈ() => countActiveUsers(users), [users]);
+    const count = useMemo(() => countActiveUsers(users), [users]);
 
   return (
     <>
