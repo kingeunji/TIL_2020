@@ -46,7 +46,7 @@ const AuthWrapper = ({children}) => (
     <Positioner>
         <ShadowedBox>
             <LogoWrapper>
-                <Logo to="/">EUNJI</Logo>
+                <Logo to="/">React with Redux</Logo>
             </LogoWrapper>
             <Contents>
                 {children}

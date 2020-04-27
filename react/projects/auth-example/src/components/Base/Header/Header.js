@@ -53,7 +53,7 @@ const Header = ({children}) => {
         <Positioner>
             <WhiteBackground>
                 <HeaderContents>
-                    <Logo>EUNJI</Logo>
+                    <Logo>React With Redux</Logo>
                     <Spacer/>
                     {children}
                 </HeaderContents>
