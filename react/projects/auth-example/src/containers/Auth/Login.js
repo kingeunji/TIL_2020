@@ -24,7 +24,8 @@ class Login extends Component {
 
     render() {
         const { email, password } = this.props.form.toJS(); // form 에서 email 과 password 값을 읽어옴
-        const { handleChange } = this;
+        const { handleChange }
+        = this;
 
         return (
             <AuthContent title="로그인">
